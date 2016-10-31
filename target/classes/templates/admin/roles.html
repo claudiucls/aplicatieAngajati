@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+<title>Aplicatie V1.0</title>
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+    <div th:if="${not #lists.isEmpty(roles)}">
+        <h2>Lista Roluri</h2>  
+ 
+        <table class="table table-striped">
+        	
+            <tr>
+                <th>User Role</th>
+                <th colspan="2">Actiuni</th>
+            </tr>
+           
+            <tr th:each="r : ${roles}">
+                <td th:text="${r.roleName}"></td>
+                <td><a class="btn btn-danger" th:href="${'/roles/edit/' + r.roleName}">*Editare</a></td>
+                <td><a class="btn btn-danger" th:href="${'/roles/delete/' + r.roleName}">*Stergere</a></td>
+            </tr>
+        </table>
+		
+    </div>
+   </div>
+		<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>

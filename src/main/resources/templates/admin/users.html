@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+<title>Aplicatie V1.0</title>
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+    <div th:if="${not #lists.isEmpty(users)}">
+        <h2>Lista Angajati</h2>  
+      
+        <ul class="nav nav-pills"> 
+           	<li th:each="p:${pages}"><a th:href="${'/users/list?page='+p}" th:text="${'Pagina-' + p}"></a></li>
+        </ul>
+        <table class="table table-striped">
+        	
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Roles</th>
+                <th>Activ</th>
+                <th colspan="2">Actiuni</th>
+            </tr>
+           
+            <tr th:each="u : ${users.content}">
+                <td th:text="${u.id}"></td>
+                <td th:text="${u.username}"></td>
+                <td th:text="${u.password}"></td>
+                <td>
+                		<p th:each="r:${u.roles}">
+                			<span th:text="${r.roleName}"> </span>
+                		</p>
+                </td>
+                <td th:text="${u.actived}"></td>
+                <td><a class="btn btn-danger" th:href="${'/users/edit/' + u.id}">*Editare</a></td>
+                <td><a class="btn btn-danger" th:href="${'/users/delete/' + u.id}">*Stergere</a></td>
+            </tr>
+        </table>
+		
+    </div>
+   </div>
+		<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>

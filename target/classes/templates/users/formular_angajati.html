@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Adauga - Editeaza Angajat</title>
+<th:block th:include="include/header:: links"></th:block>
+</head>
+<body>
+	<th:block th:include="include/header:: topnav"></th:block>
+	<div class="container">
+		<h2>Detalii Angajat</h2>
+		<form class="form-horizontal" th:object="${angajat}"
+			th:action="@{/angajati/add}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nume:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{nume}"
+						placeholder="Numlele angajatului:" /> <span class="bg-danger"
+						th:errors="*{nume}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Prenume:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{prenume}"
+						placeholder="Prenumele angajatului:" /> <span class="bg-danger"
+						th:errors="*{prenume}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Functia:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{functia}"
+						placeholder="Functia angajatului:" /> <span class="bg-danger"
+						th:errors="*{functia}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">CNP:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{cnp}"
+						placeholder="CNP-ul angajatului:" /> <span class="bg-danger"
+						th:errors="*{cnp}"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Data angajarii:</label>
+				<div class="col-sm-6">
+					<input type="date" class="form-control" th:field="*{dataAngajarii}"
+						placeholder="Data angajarii angajatului:" /> <span
+						class="bg-danger" th:errors="*{dataAngajarii}"></span>
+				</div>
+			</div>
+			<div th:if="${(param.action != null)and(param.action[0]=='edit')}">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Data terminarii:</label>
+					<div class="col-sm-6">
+						<input type="date" class="form-control"
+							th:field="*{dataTerminarii}"
+							placeholder="Data terminarii angajatului:" /> <span
+							class="bg-danger" th:errors="*{dataTerminarii}"></span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Salveaza</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<th:block th:include="include/footer:: footer"></th:block>
+</body>
+</html>

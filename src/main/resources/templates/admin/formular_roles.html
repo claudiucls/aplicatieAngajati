@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Adauga - Editeaza Roluri</title>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+		<h2>Detalii Roluri</h2>
+		<form class="form-horizontal" th:object="${role}"
+			th:action="@{/roles/add}" method="post">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nume Role:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{roleName}"
+						placeholder="Role:" /> <span class="bg-danger"
+						th:errors="*{roleName}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Descriere Role:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{roleDescription}"
+						placeholder="Descriere Rol:" /> <span class="bg-danger"
+						th:errors="*{roleDescription}"></span>
+				</div>
+			</div>
+					
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Salveaza</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>

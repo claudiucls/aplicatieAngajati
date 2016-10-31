@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+<title>Aplicatie V1.0</title>
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+    <div th:if="${not #lists.isEmpty(angajati)}">
+        <h2>Lista Angajati</h2>  
+        <div class="container">
+        	<form class="form-inline" th:action="@{/angajati/list}" method="get">
+        		<div class="form-group">
+        		<label for="cauta">Cautare:</label>
+        		<input class="form-control" type="text" id="cauta" name="cauta"/>
+        		<input class="form-control btn btn-primary" type="submit" value="Cauta"/>
+        		</div>
+        	</form>
+        </div>  
+        <ul class="nav nav-pills"> 
+           	<li th:each="p:${pages}"><a th:href="${'/angajati/list?page='+p}" th:text="${'Pagina-' + p}"></a></li>
+        </ul>
+        <table class="table table-striped">
+        	
+            <tr>
+                <th>Stare</th>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Functia</th>
+                <th>CNP</th>
+                <th>Data nasterii</th>
+                <th colspan="2">Actiuni</th>
+            </tr>
+           
+            <tr th:each="a : ${angajati.content}">
+                <td> <span class="bg-danger" th:if="${a.dataTerminarii!=null}"  th:text="${'Terminat la :'+a.dataTerminarii}"></span> 
+                	<span th:if="${a.dataTerminarii==null}"  th:text="${'Angajat la : '+a.dataAngajarii}"></span>
+                </td>
+                <td th:text="${a.nume}"></td>
+                <td th:text="${a.prenume}"></td>
+                <td th:text="${a.functia}"></td>
+                <td th:text="${a.cnp}"></td>
+                <td th:text="${#dates.format(a.dataNasterii,'dd-MM-yyyy')}"></td>
+                <td><a class="btn btn-danger" th:href="@{'/angajati/edit/'+${a.id}(action=edit)}">*Editare</a></td>
+                <td><a class="btn btn-danger" th:href="${'/angajati/delete/' + a.id}">*Stergere</a></td>
+            </tr>
+        </table>
+		
+    </div>
+   </div>
+		<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>

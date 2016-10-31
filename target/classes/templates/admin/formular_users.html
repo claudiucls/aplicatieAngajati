@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Adauga - Editeaza Utilizator</title>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+		<h2>Detalii Utilizatori</h2>
+		<form class="form-horizontal" th:object="${user}"
+			th:action="@{/users/add}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nume Utilizator:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{username}"
+						placeholder="Utilizator:" /> <span class="bg-danger"
+						th:errors="*{username}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Parola:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" th:field="*{password}"
+						placeholder="Parola:" /> <span class="bg-danger"
+						th:errors="*{password}"></span>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Este Admin ? </label>
+				<div class="col-sm-6">
+					<input type="checkbox" name="isAdmin" value="admin"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Este Activ ? </label>
+				<div class="col-sm-6">
+					<input type="checkbox" th:field="*{actived}" th:name="*{actived}" value="false"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Salveaza</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>

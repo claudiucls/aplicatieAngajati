@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+<title>Aplicatie V1.0</title>
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+		<div class="jumbotron">
+			<h3>Acces neautorizat</h3>
+			<div class="panel panel-info">
+			<div class="panel-heading">Nu ai voie aici !</div>
+			<div class="panel-body text-center">
+			
+			<p>
+				<a class="btn btn-primary btn-lg" th:href="@{/login}" >Login</a>
+			</p>
+			</div>
+			</div>
+		</div>
+	
+	</div>
+		<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>

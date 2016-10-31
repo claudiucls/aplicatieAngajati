@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--/*/ <th:block th:include="include/header:: links"></th:block> /*/-->
+<title>Aplicatie V1.0</title>
+</head>
+<body>
+	<!--/*/ <th:block th:include="include/header:: topnav"></th:block> /*/-->
+	<div class="container">
+		<div class="jumbotron">
+			<h3 class="text-center">Aplicatie V1.0 - Evidenta Angajati</h3>
+			<div class="panel panel-info">
+			<div class="panel-heading text-center">Aplicatie facuta folosing</div>
+			<div class="panel-body">
+			<ul>
+				<li>Spring Boot</li>
+				<li>Spring DataJPA</li>
+				<li>MySQL</li>
+				<li>Spring Security</li>
+				<li>Thymeleaf</li>
+			</ul>
+			<div th:if="${#authorization.expression('isAuthenticated()')}">
+				<a class="btn btn-primary btn-lg" th:href="@{/logout}" >Logout</a>
+			</div>
+			<div th:unless="${#authorization.expression('isAuthenticated()')}">
+				<a class="btn btn-primary btn-lg" th:href="@{/login}" >Login</a>
+			</div>
+			</div>
+			</div>
+		</div>
+	
+	</div>
+		<!--/*/ <th:block th:include="include/footer:: footer"></th:block> /*/-->
+</body>
+</html>
