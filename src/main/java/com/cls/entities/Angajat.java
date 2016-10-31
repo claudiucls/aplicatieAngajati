@@ -1,11 +1,13 @@
 package com.cls.entities;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,6 +26,12 @@ public class Angajat {
 	private Date dataNasterii;
 	private Date dataAngajarii;
 	private Date dataTerminarii;
+	@NotNull
+	private double salariu;
+	private short persInt;
+	
+	@OneToMany(mappedBy="angajat")
+	public Set<Concediu> concedii;
 	
 	
 	public Angajat() {
@@ -87,6 +95,23 @@ public class Angajat {
 		this.dataAngajarii = dataAngajarii;
 	}
 
+
+	public double getSalariu() {
+		return salariu;
+	}
+
+	public void setSalariu(double salariu) {
+		this.salariu = salariu;
+	}
+
+	public short getPersInt() {
+		return persInt;
+	}
+
+	public void setPersInt(short persInt) {
+		this.persInt = persInt;
+	}
+
 	public Date getDataTerminarii() {
 		return dataTerminarii;
 	}
@@ -94,6 +119,55 @@ public class Angajat {
 	public void setDataTerminarii(Date dataTerminarii) {
 		this.dataTerminarii = dataTerminarii;
 	}
+
+	// calculul deducerii persoanle
+	 public double calculDI(Angajat a) {
+	        double salariu = a.getSalariu();
+	        short pers = a.getPersInt();
+	        double ded = 0;
+	        if (salariu <= 1500) {
+	            switch (pers) {
+	                default:
+	                    ded = 300;
+	                    break;
+	                case 1:
+	                    ded = 400;
+	                    break;
+	                case 2:
+	                    ded = 500;
+	                    break;
+	                case 3:
+	                    ded = 600;
+	                    break;
+	                case 4:
+	                    ded = 800;
+	                    break;
+	            }
+	        } else if (salariu >= 1501 && salariu <= 3000) {
+	            switch (pers) {
+	                default:
+	                    ded = 300 * (1 - (salariu - 1500) / 1500);
+	                    break;
+	                case 1:
+	                    ded = 400 * (1 - (salariu - 1500) / 1500);
+	                    break;
+	                case 2:
+	                    ded = 500 * (1 - (salariu - 1500) / 1500);
+	                    break;
+	                case 3:
+	                    ded = 600 * (1 - (salariu - 1500) / 1500);
+	                    break;
+	                case 4:
+	                    ded = 800 * (1 - (salariu - 1500) / 1500);
+	                    break;
+	            }
+	        } else {
+	            ded = 0;
+	        }
+
+	        return ded;
+	    }
+	
 
 
 	

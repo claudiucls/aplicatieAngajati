@@ -15,7 +15,7 @@ public interface CalculRepository extends JpaRepository<Calcul, Long>{
 	@Query("select c from Calcul c where c.lunaCurenta =?1")
 	Page<Calcul> listAllByDate(String luna,Pageable page); 
 	
-	@Query("select m from Calcul m group by m.lunaCurenta order by m.lunaCurenta desc")
+	@Query("select c from Calcul c group by c.lunaCurenta order by c.lunaCurenta desc")
 	List<Calcul> listAllUnique();
 	
 	List<Calcul> findByLunaCurenta(String lunaCurenta);
