@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 
 
 
-import com.cls.repository.CalculRepository;
 
 @SpringBootApplication
 public class Application {
