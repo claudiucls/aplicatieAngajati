@@ -31,6 +31,7 @@ public class Angajat {
 	private double salariu;
 	private short persInt;
 	
+	
 	@OneToMany(mappedBy="angajat")
 	private Set<Concediu> concedii;
 	
