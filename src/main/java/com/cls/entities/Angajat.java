@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,8 +32,10 @@ public class Angajat {
 	private short persInt;
 	
 	@OneToMany(mappedBy="angajat")
-	public Set<Concediu> concedii;
+	private Set<Concediu> concedii;
 	
+	@Transient
+	private double deducere = calculDI();
 	
 	public Angajat() {
 		super();
@@ -119,14 +122,19 @@ public class Angajat {
 	public void setDataTerminarii(Date dataTerminarii) {
 		this.dataTerminarii = dataTerminarii;
 	}
+	
+	
+
+	public double getDeducere() {
+		return deducere;
+	}
+
 
 	// calculul deducerii persoanle
-	 public double calculDI(Angajat a) {
-	        double salariu = a.getSalariu();
-	        short pers = a.getPersInt();
+	 public double calculDI() {
 	        double ded = 0;
 	        if (salariu <= 1500) {
-	            switch (pers) {
+	            switch (persInt) {
 	                default:
 	                    ded = 300;
 	                    break;
@@ -144,7 +152,7 @@ public class Angajat {
 	                    break;
 	            }
 	        } else if (salariu >= 1501 && salariu <= 3000) {
-	            switch (pers) {
+	            switch (persInt) {
 	                default:
 	                    ded = 300 * (1 - (salariu - 1500) / 1500);
 	                    break;

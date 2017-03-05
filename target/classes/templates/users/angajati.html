@@ -50,12 +50,12 @@
                 <td th:text="${a.functia}"></td>
                 <td th:text="${#dates.format(a.dataNasterii,'dd-MM-yyyy')}"></td>
                 <td th:text="${a.salariu}"></td>
+                <td></td>
                 <td th:text="${a.salariu*0.105}"></td>
                 <td th:text="${a.salariu*0.055}"></td>
                 <td th:text="${a.salariu*0.005}"></td>
                 <td th:text="${a.persInt}"></td>
-                <td></td>
-                <td></td>
+                <td th:text="${a.deducere}"></td>
                 <td></td>
                 <td></td>
                 <td><a class="btn btn-danger" th:href="@{'/angajati/edit/'+${a.id}(action=edit)}">*Editare</a></td>

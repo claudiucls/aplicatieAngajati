@@ -34,7 +34,7 @@ public class AngajatController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String newProdus(@Valid Angajat angajat, BindingResult br) {
+	public String newAngajat(@Valid Angajat angajat, BindingResult br) {
 		if (br.hasErrors()) {
 			return "users/formular_angajati";
 		}
